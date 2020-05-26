@@ -10,8 +10,9 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 let users = [
-  { id: 1, name: "ff" },
-  { id: 2, name: "ll" },
+  { id: 1, name: "alex" },
+  { id: 2, name: "crystal" },
+  { id: 3, name: "eddie" }
 ];
 
 app.get("/api/users", function (req, res) {

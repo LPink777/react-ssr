@@ -2,19 +2,18 @@ import React from "react";
 import ReactDom from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
+import { renderRoutes } from "react-router-config";
 import Header from "../components/Header";
 import routes from "../routes";
-import getStore from "../store";
+import { getClientStore } from "../store";
 
 ReactDom.hydrate(
-  <Provider store={getStore()}>
+  <Provider store={getClientStore()}>
     <BrowserRouter>
       <>
         <Header />
         <div className="container" style={{ marginTop: 50 }}>
-          {routes.map((route) => (
-            <Route {...route} />
-          ))}
+          {renderRoutes(routes)}
         </div>
       </>
     </BrowserRouter>

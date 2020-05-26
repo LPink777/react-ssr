@@ -8,7 +8,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actions.getHomeList());
+    !list.length && dispatch(actions.getHomeList());
   }, []);
 
   return (
@@ -25,5 +25,7 @@ const Home = () => {
     </div>
   );
 };
+
+Home.loadData = store => store.dispatch(actions.getHomeList());
 
 export default Home;

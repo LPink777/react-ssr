@@ -3,8 +3,9 @@ import axios from "axios";
 
 export default {
   getHomeList() {
-    return function (dispatch, getState) {
-      axios.get("http://localhost:4000/api/users").then((result) => {
+    return function (dispatch, getState, request) {
+      //http://localhost:4000/api/users
+      return request.get("/api/users").then((result) => {
         let list = result.data;
         dispatch({
           type: types.SET_HOME_LIST,

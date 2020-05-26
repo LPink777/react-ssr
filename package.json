@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm-run-all --parallel dev:*",
-    "dev:build": "webpack --config webpack.config.js --watch",
+    "start": "npm-run-all --parallel build:* dev:start node:start",
+    "build:server": "webpack --config webpack.config.js",
+    "build:client": "webpack --config webpack.client.js",
     "dev:start": "nodemon ./dist/bundle.js",
-    "build:dev": "webpack --config webpack.client.js --watch"
+    "node:start": "nodemon ./src/api/server.js"
   },
   "keywords": [],
   "author": "",
@@ -15,8 +16,10 @@
   "dependencies": {
     "axios": "^0.19.2",
     "express": "^4.17.1",
+    "express-http-proxy": "^1.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-config": "^5.1.1",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {

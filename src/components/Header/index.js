@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 export default class Home extends Component {
   render() {
     return (
@@ -15,6 +14,9 @@ export default class Home extends Component {
             <ul className="nav navbar-nav">
               <li>
                 <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/user/list">User List</Link>
               </li>
               <li>
                 <Link to="/counter">Counter</Link>
