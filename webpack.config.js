@@ -1,26 +1,42 @@
-const path = require('path');
-const merge = require('webpack-merge');
-const nodeExternals = require('webpack-node-externals');
-const base = require('./webpack.base');
+const path = require("path");
+const merge = require("webpack-merge");
+const nodeExternals = require("webpack-node-externals");
+const base = require("./webpack.base");
 
 module.exports = merge(base, {
-  mode: 'development',
-  target: 'node',
-  entry: path.join(__dirname, 'src/server/index.js'),
+  mode: "development",
+  target: "node",
+  entry: path.join(__dirname, "src/server/index.js"),
   watch: true,
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, "dist"),
     filename: "bundle.js",
   },
   externals: [nodeExternals()],
   resolve: {
-    extensions: ['.json', '.js', '.jsx']
+    extensions: [".json", ".js", ".jsx"],
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   devServer: {
-    contentBase: path.join(__dirname, '/dist/'),
+    contentBase: path.join(__dirname, "/dist/"),
     inline: true,
-    host: 'localhost',
+    host: "localhost",
     port: 8989,
-  }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          "isomorphic-style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+        ],
+      },
+    ],
+  },
 });

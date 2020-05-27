@@ -4,11 +4,16 @@ import Counter from "./container/Counter";
 import User from "./container/User";
 import UserList from "./container/User/components/UserList";
 import App from "./container/App";
+import Login from "./container/Login";
+import Logout from "./container/Logout";
+import Profile from "./container/Profile";
+import NotFound from './container/NotFound';
 
 export default [
   {
     path: "/",
     component: App,
+    loadData: App.loadData,
     routes: [
       {
         path: "/",
@@ -32,8 +37,29 @@ export default [
       {
         path: "/counter",
         component: Counter,
-        key: "login",
+        key: "counter",
         exact: true,
+      },
+      {
+        path: "/login",
+        component: Login,
+        key: "/login",
+        exact: true,
+      },
+      {
+        path: "/logout",
+        component: Logout,
+        key: "/logout",
+        exact: true,
+      },
+      {
+        path: "/profile",
+        component: Profile,
+        key: "/profile",
+        exact: true,
+      },
+      {
+        component: NotFound,
       },
     ],
   },

@@ -1,5 +1,5 @@
-const merge = require('webpack-merge');
-const base = require('./webpack.base');
+const merge = require("webpack-merge");
+const base = require("./webpack.base");
 let path = require("path");
 
 module.exports = merge(base, {
@@ -8,5 +8,21 @@ module.exports = merge(base, {
   output: {
     path: path.resolve(__dirname, "public"),
     filename: "index.js",
-  }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+        ],
+      },
+    ],
+  },
 });

@@ -2,16 +2,15 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import reducers from "./reducers";
-import clientRequest from '../client/request';
-import serverRequest from '../server/request';
+import clientRequest from "../client/request";
+import getServerRequest from "../server/request";
 
-export function getStore() {
+export function getStore(req) {
   return createStore(
     reducers,
-    applyMiddleware(thunk.withExtraArgument(serverRequest), logger)
+    applyMiddleware(thunk.withExtraArgument(getServerRequest(req)), logger)
   );
 }
-
 export function getClientStore() {
   let initState = window.context.state;
   return createStore(
