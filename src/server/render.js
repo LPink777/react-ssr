@@ -6,7 +6,6 @@ import { Provider } from "react-redux";
 import Header from "../components/Header";
 import routes from "../routes";
 import { getStore } from "../store";
-import App from "../container/App";
 
 export default function (req, res) {
   let store = getStore(req);
@@ -14,7 +13,7 @@ export default function (req, res) {
   let matchedRoutes = matchRoutes(routes, req.path);
 
   const promises = matchedRoutes.map(({ route, match }) =>
-    route.loadData ? route.loadData(store) : Promise.resolve(null)
+    route.loadData ? new Promise((resolve, reject) => route.loadData(store).then(resolve, resolve)) : Promise.resolve(null)
   );
 
   Promise.all(promises).then((result) => {

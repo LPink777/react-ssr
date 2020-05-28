@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all --parallel build:* dev:start node:start",
-    "build:server": "webpack --config webpack.config.js",
-    "build:client": "webpack --config webpack.client.js",
     "dev:start": "nodemon ./dist/bundle.js",
+    "build:client": "webpack --config webpack.client.js --watch",
+    "build:server": "webpack --config webpack.config.js --watch",
     "node:start": "nodemon ./src/api/server.js"
   },
   "keywords": [],
